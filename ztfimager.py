@@ -26,6 +26,7 @@ from matplotlib.patches import Circle
 import numpy as np
 from PIL import Image, ImageOps
 from scipy.ndimage import rotate
+import sys
 
 # Import local function
 from image_funcs import ps_query, getztfrefurls, getps1colorim
@@ -62,6 +63,8 @@ if dec == None or type(dec) != float or dec < -90. or dec > 90.:
 	print("")
 	sys.exit(1)
 
+print("")	
+
 
 #############################################################
 ## Perform PS1 query
@@ -87,7 +90,7 @@ ps1_im = np.flipud(rotate(ImageOps.flip(getps1colorim(ra,dec,size=500,filters="g
 
 #############################################################
 ## Plot the images
-fig, (ax1,ax2) = plt.subplots(1,2,figsize=(12,6))
+fig, (ax1,ax2) = plt.subplots(1,2,figsize=(12,6), tight_layout=True, gridspec_kw={'wspace':0.25})
 
 ## Define nice scaling so the ZTF image is viewable:
 ZS = ZScaleInterval(nsamples=10000, contrast=0.15, max_reject=0.5, 
@@ -106,9 +109,17 @@ ax1.add_patch(Circle((wpix[0][0],wpix[0][1]), radius=7.0 ,
 ax1.add_patch(Circle((30,30), radius=7.0 ,
                edgecolor='r',facecolor='None',linewidth=1.75))
 ax1.set_title('ZTF Reference <filter> Image',fontsize=16)
+ax1.tick_params(which='major',direction='out',labelsize=12,width=1.25,length=6)
+ax1.set_xlabel('Separation (arcsec)',fontsize=14)
+ax1.set_ylabel('Separation (arcsec)',fontsize=14)
 
 ps1_ax =ax2.imshow(ps1_im, origin='lower')
 ax2.set_title(r'PS1 Reference $gri$ Image',fontsize=16)
+ax2.tick_params(which='major',direction='out',labelsize=12,width=1.25,length=6)
+ax2.set_xlabel('Separation (arcsec)',fontsize=14)
+ax2.set_ylabel('Separation (arcsec)',fontsize=14)
+
+
 plt.show()
 # plt.suptitle(wds[index],fontsize='xx-large',y=0.92);
 
