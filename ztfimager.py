@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """
 ztfimager queries ZTF and Pan-STARRS to plot both a 
@@ -9,10 +10,12 @@ Author:
 For a description of updates, see the 
 version_history.txt file.
 Usage:
-    ztfimage -ra|--ra -dec|--dec
+    ztfimage -ra|--ra -dec|--dec -q|--query
 Options:
     -ra --ra      RA of target in degrees
     -dec --dec    Declination of target in degrees
+    -q --query	  Print out the table of results for neighboring stars
+    			  within the Pan-STARRS query
 """ 
 
 
@@ -28,7 +31,7 @@ from PIL import Image, ImageOps
 from scipy.ndimage import rotate
 import sys
 
-# Import local function
+# Import local functions
 from image_funcs import ps_query, getztfrefurls, getps1colorim
 
 # Suppress annoying warnings
@@ -38,12 +41,13 @@ warnings.simplefilter('ignore')
 
 #############################################################
 ## Generate arguments for command line parsing
-
 parser = argparse.ArgumentParser()
 parser.add_argument('-ra', '--ra',type=float,default=None,
-                    help="Code name for telescope used.")
+                    help="Right ascension of target.")
 parser.add_argument('-dec', '--dec',type=float,default=None,
-                    help="Code name for telescope used.")
+                    help="Declination of target.")
+parser.add_argument('-q', '--query',action='store_true',
+                    help="Whether to print the results from the 30 arcsec Pan-STARRS query.")
 args = parser.parse_args()
 ra = args.ra 
 dec = args.dec 
@@ -68,13 +72,31 @@ print("")
 
 #############################################################
 ## Perform PS1 query
-ps1_query = ps_query(ra,dec,60)
+try:
+	ps1_query = ps_query(ra,dec,30)
+	if args.query:
+		print("Results from 30 arcsec Pan-STARRS query:\n")
+		print(ps1_query[['raMean','decMean','gMeanPSFMag','rMeanPSFMag','separation']])
+		print("")
+except FileNotFoundError:
+	print('ERROR! "R.A. = {}, decl. = {}" is not covered by Pan-STARRS.'.format(ra, dec))
+	print('Please check your coordinates or try another target.')
+	print("")
+	sys.exit(1)
 
 ## Get ZTF reference image
-ztf_im = getztfrefurls(ra,dec)[0]
-with fits.open(ztf_im) as hdul:
-    ref_im = hdul[0].data
-    hdr = hdul[0].header
+try:
+	ztf_im = getztfrefurls(ra,dec)[0]
+	filt = ztf_im.split('/')[10]
+	with fits.open(ztf_im) as hdul:
+	    ref_im = hdul[0].data
+	    hdr = hdul[0].header
+	    # print(hdr)
+except IndexError:
+	print('ERROR! "R.A. = {}, decl. = {}" is not covered by ZTF.'.format(ra, dec))
+	print('Please check your coordinates or try another target.')
+	print("")
+	sys.exit(1)
 
 ## Get WCS coordinates from ZTF image header to plot locations of nearby stars found by Pan-STARRS
 w = wcs.WCS(hdr)
@@ -99,16 +121,13 @@ vmin,vmax = ZS.get_limits(ref_im)
 
 ## Plot the images
 ref_ax = ax1.imshow(np.flipud(ref_im), cmap='gray',origin='lower',vmin=vmin, vmax=vmax)
-ax1.plot(30,30,'bx',ms=16,mew=4,alpha=0.7)
 ax1.plot(wpix[3][0],wpix[3][1],'yx',ms=16,mew=4,alpha=0.4)
 ax1.plot(wpix[2][0],wpix[2][1],'gx',ms=16,mew=4,alpha=0.4)
 ax1.plot(wpix[1][0],wpix[1][1],'rx',ms=16,mew=4,alpha=0.9)
 ax1.plot(wpix[0][0],wpix[0][1],'cx',ms=16,mew=4,alpha=0.6)
 ax1.add_patch(Circle((wpix[0][0],wpix[0][1]), radius=7.0 ,
                edgecolor='c',facecolor='None',linewidth=1.75))
-ax1.add_patch(Circle((30,30), radius=7.0 ,
-               edgecolor='r',facecolor='None',linewidth=1.75))
-ax1.set_title('ZTF Reference <filter> Image',fontsize=16)
+ax1.set_title(r'ZTF Reference ${}$-band Image'.format(filt[1]),fontsize=16)
 ax1.tick_params(which='major',direction='out',labelsize=12,width=1.25,length=6)
 ax1.set_xlabel('Separation (arcsec)',fontsize=14)
 ax1.set_ylabel('Separation (arcsec)',fontsize=14)
@@ -119,20 +138,7 @@ ax2.tick_params(which='major',direction='out',labelsize=12,width=1.25,length=6)
 ax2.set_xlabel('Separation (arcsec)',fontsize=14)
 ax2.set_ylabel('Separation (arcsec)',fontsize=14)
 
-
 plt.show()
-# plt.suptitle(wds[index],fontsize='xx-large',y=0.92);
 
-# Display the PS1 query results
-
-##########################################################
-######### ADD PARSER ARG TO SHOW QUERY TABLE? ############
-##########################################################
-
-
-# ps1_query[['objID','raMean','decMean','nDetections','gMeanPSFMag','rMeanPSFMag','sep']]
-
-
-
-# Print a closing message to the command line
+## Print a closing message to the command line
 print('\nFinished!\n')

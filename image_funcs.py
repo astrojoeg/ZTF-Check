@@ -102,8 +102,8 @@ def ps_query(ra,dec,rad,full_query=False):
     sep = np.array(sep)
     sep -= np.sort(sep)[0] 
     num_cols = len(ps_tab.columns)
-    ps_tab.insert(num_cols+0,'sep',sep)
-    sorted_tab = ps_tab.sort_values('sep',ascending=True).reset_index(drop=True) 
+    ps_tab.insert(num_cols+0,'separation',sep)
+    sorted_tab = ps_tab.sort_values('separation',ascending=True).reset_index(drop=True) 
     
     # Save the query for future use
     # ps_tab.to_csv(qpath+'ps_query.csv',index=False)
