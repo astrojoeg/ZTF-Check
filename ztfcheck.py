@@ -73,7 +73,7 @@ print("")
 #############################################################
 ## Perform PS1 query
 try:
-	ps1_query = ps_query(ra,dec,30)
+	ps1_query = ps_query(ra,dec,30,full_query=False)
 	if args.query:
 		print("Results from 30 arcsec Pan-STARRS query:\n")
 		print(ps1_query[['raMean','decMean','gMeanPSFMag','rMeanPSFMag','separation']])

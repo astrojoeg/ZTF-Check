@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>image_funcs &mdash; ZTF-Check 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ZTF-Check
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">image_funcs</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ZTF-Check</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>image_funcs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ztfcheck.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="image-funcs">
+<span id="id1"></span><h1>image_funcs<a class="headerlink" href="#image-funcs" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-image_funcs"></span><p>Script containing many functions needed for ZTF Check.</p>
+<p>These functions were either written originally by Zach Vanderbosch (<a class="reference external" href="https://github.com/zvanderbosch">https://github.com/zvanderbosch</a>)
+or members of the Space Telescope Science Instutute (STSCI) for handling MAST's Pan-STARRS
+API (see <a class="reference external" href="http://ps1images.stsci.edu/ps1_dr2_api.html">http://ps1images.stsci.edu/ps1_dr2_api.html</a> AND
+<a class="reference external" href="https://ps1images.stsci.edu/ps1image.html">https://ps1images.stsci.edu/ps1image.html</a>).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="image_funcs.checklegal">
+<span class="sig-prename descclassname"><span class="pre">image_funcs.</span></span><span class="sig-name descname"><span class="pre">checklegal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_funcs.checklegal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if this combination of table and release is acceptable</p>
+<p>Raises a VelueError exception if there is problem</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="image_funcs.getps1colorim">
+<span class="sig-prename descclassname"><span class="pre">image_funcs.</span></span><span class="sig-name descname"><span class="pre">getps1colorim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">240</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grizy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jpg'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_funcs.getps1colorim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get color image at a sky position</p>
+<p>ra, dec = position in degrees
+size = extracted image size in pixels (0.25 arcsec/pixel)
+output_size = output (display) image size in pixels (default = size).</p>
+<blockquote>
+<div><p>output_size has no effect for fits format images.</p>
+</div></blockquote>
+<p>filters = string with filters to include
+format = data format (options are &quot;jpg&quot;, &quot;png&quot;)
+Returns the image</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="image_funcs.getps1images">
+<span class="sig-prename descclassname"><span class="pre">image_funcs.</span></span><span class="sig-name descname"><span class="pre">getps1images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">240</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grizy'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_funcs.getps1images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query ps1filenames.py service to get a list of images</p>
+<p>ra, dec = position in degrees
+size = image size in pixels (0.25 arcsec/pixel)
+filters = string with filters to include
+Returns a table with the results</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="image_funcs.getps1url">
+<span class="sig-prename descclassname"><span class="pre">image_funcs.</span></span><span class="sig-name descname"><span class="pre">getps1url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">240</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grizy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jpg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_funcs.getps1url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get URL for images in the table</p>
+<p>ra, dec = position in degrees
+size = extracted image size in pixels (0.25 arcsec/pixel)
+output_size = output (display) image size in pixels (default = size).</p>
+<blockquote>
+<div><p>output_size has no effect for fits format images.</p>
+</div></blockquote>
+<p>filters = string with filters to include
+format = data format (options are &quot;jpg&quot;, &quot;png&quot; or &quot;fits&quot;)
+color = if True, creates a color image (only for jpg or png format).</p>
+<blockquote>
+<div><p>Default is return a list of URLs for single-filter grayscale images.</p>
+</div></blockquote>
+<p>Returns a string with the URL</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="image_funcs.getztfrefurls">
+<span class="sig-prename descclassname"><span class="pre">image_funcs.</span></span><span class="sig-name descname"><span class="pre">getztfrefurls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">45.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_funcs.getztfrefurls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to retrieve URLs for reference image cutouts
+from IRSA/IPAC centered on a given RA and DEC.</p>
+<p>Author: Zach Vanderbosch</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ra</strong> (<em>float</em>) -- Right Ascension in Decimal Degrees</p></li>
+<li><p><strong>dec</strong> (<em>float</em>) -- Declination in Decimal Degrees</p></li>
+<li><p><strong>size</strong> (<em>float</em>) -- Image size in arcseonds</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>urls (list): list of URLs used to download image data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="image_funcs.ps1cone">
+<span class="sig-prename descclassname"><span class="pre">image_funcs.</span></span><span class="sig-name descname"><span class="pre">ps1cone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dr1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'csv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseurl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://catalogs.mast.stsci.edu/api/v0.1/panstarrs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_funcs.ps1cone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do a cone search of the PS1 catalog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>float</strong><strong>)</strong> (<em>radius</em>) -- </p></li>
+<li><p><strong>(</strong><strong>float</strong><strong>)</strong> -- </p></li>
+<li><p><strong>(</strong><strong>float</strong><strong>)</strong> -- </p></li>
+<li><p><strong>(</strong><strong>string</strong><strong>)</strong> (<em>release</em>) -- </p></li>
+<li><p><strong>(</strong><strong>string</strong><strong>)</strong> -- </p></li>
+<li><p><strong>format</strong> (<em>csv</em><em>, </em><em>votable</em><em>, </em><em>json</em>) -- </p></li>
+<li><p><strong>columns</strong> (<em>list of column names to include</em><em> (</em><em>None means use defaults</em><em>)</em>) -- </p></li>
+<li><p><strong>baseurl</strong> (<em>base URL for the request</em>) -- </p></li>
+<li><p><strong>verbose</strong> (<em>print info about request</em>) -- </p></li>
+<li><p><strong>**kw</strong> (<em>other parameters</em><em> (</em><em>e.g.</em><em>, </em><em>'nDetections.min':2</em><em>)</em>) -- </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="image_funcs.ps1metadata">
+<span class="sig-prename descclassname"><span class="pre">image_funcs.</span></span><span class="sig-name descname"><span class="pre">ps1metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dr1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseurl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://catalogs.mast.stsci.edu/api/v0.1/panstarrs'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_funcs.ps1metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return metadata for the specified catalog and table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>string</strong><strong>)</strong> (<em>release</em>) -- </p></li>
+<li><p><strong>(</strong><strong>string</strong><strong>)</strong> -- </p></li>
+<li><p><strong>baseurl</strong> (<em>base URL for the request</em>) -- </p></li>
+<li><p><strong>an astropy table with columns name</strong> (<em>Returns</em>) -- </p></li>
+<li><p><strong>type</strong> -- </p></li>
+<li><p><strong>description</strong> -- </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="image_funcs.ps1search">
+<span class="sig-prename descclassname"><span class="pre">image_funcs.</span></span><span class="sig-name descname"><span class="pre">ps1search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dr1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'csv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseurl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://catalogs.mast.stsci.edu/api/v0.1/panstarrs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_funcs.ps1search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do a general search of the PS1 catalog (possibly without ra/dec/radius)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>string</strong><strong>)</strong> (<em>release</em>) -- </p></li>
+<li><p><strong>(</strong><strong>string</strong><strong>)</strong> -- </p></li>
+<li><p><strong>format</strong> (<em>csv</em><em>, </em><em>votable</em><em>, </em><em>json</em>) -- </p></li>
+<li><p><strong>columns</strong> (<em>list of column names to include</em><em> (</em><em>None means use defaults</em><em>)</em>) -- </p></li>
+<li><p><strong>baseurl</strong> (<em>base URL for the request</em>) -- </p></li>
+<li><p><strong>verbose</strong> (<em>print info about request</em>) -- </p></li>
+<li><p><strong>**kw</strong> (<em>other parameters</em><em> (</em><em>e.g.</em><em>, </em><em>'nDetections.min':2</em><em>)</em><em>  Note this is required!</em>) -- </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="image_funcs.ps_query">
+<span class="sig-prename descclassname"><span class="pre">image_funcs.</span></span><span class="sig-name descname"><span class="pre">ps_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rad</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_funcs.ps_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to perform a Pan-STARRS query centered
+on a given RA and DEC. Returns basic information for
+the target and nearby neighbors.</p>
+<p>Author: Zach Vanderbosch (original), Joseph Guidry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ra</strong> (<em>float</em>) -- Right Ascension in Decimal Degrees</p></li>
+<li><p><strong>dec</strong> (<em>float</em>) -- Declination in Decimal Degrees</p></li>
+<li><p><strong>rad</strong> (<em>float</em>) -- Radius of cone search</p></li>
+<li><p><strong>full_query</strong> (<em>bool</em><em>, </em><em>optional</em>) -- Optional argument that allows
+users to query further information for a given target.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sorted_tab (DataFrame): Pandas DataFrame containung query results</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Joseph Guidry.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

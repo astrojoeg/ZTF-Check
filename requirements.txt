@@ -1,0 +1,5 @@
+astropy>=4
+numpy
+matplotlib
+pandas
+sphinx
