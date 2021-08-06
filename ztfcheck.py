@@ -125,8 +125,8 @@ ax1.plot(wpix[3][0],wpix[3][1],'C1x',ms=16,mew=4,alpha=1,label='Neighbor 3')
 ax1.plot(wpix[2][0],wpix[2][1],'C2x',ms=16,mew=4,alpha=1,label='Neighbor 2')
 ax1.plot(wpix[1][0],wpix[1][1],'C3x',ms=16,mew=4,alpha=1,label='Neighbor 1')
 ax1.plot(wpix[0][0],wpix[0][1],'C9x',ms=16,mew=4,alpha=1,label='Target')
-ax1.add_patch(Circle((wpix[0][0],wpix[0][1]), radius=7.0 ,
-               edgecolor='C9',facecolor='None',linewidth=1.75))
+ax1.add_patch(Circle((wpix[0][0],wpix[0][1]), radius=5.0 ,
+               edgecolor='C9',facecolor='None',linewidth=1.75,label='5 arcsec Aperture'))
 ax1.set_title(r'ZTF Reference ${}$-band Image'.format(filt[1]),fontsize=16)
 ax1.tick_params(which='major',direction='out',labelsize=12,width=1.25,length=6)
 ax1.set_xlabel('Separation (arcsec)',fontsize=14)
