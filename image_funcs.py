@@ -1,8 +1,14 @@
-'''
-Script originally written by Zach Vanderbosch (https://github.com/zvanderbosch)
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-Updated by Joseph Guidry to sort outputted DataFrame by proximity to the queried target.
-'''
+"""
+Script containing many functions needed for ZTF Check. 
+
+These functions were either written originally by Zach Vanderbosch (https://github.com/zvanderbosch)
+or members of the Space Telescope Science Instutute (STSCI) for handling MAST's Pan-STARRS 
+API (http://ps1images.stsci.edu/ps1_dr2_api.html).
+"""
+
 
 from __future__ import print_function
 import io
@@ -42,17 +48,35 @@ except ImportError:  # Python 2.x
 
 
 def ps_query(ra,dec,rad,full_query=False):
+     """
+    Function to perform a Pan-STARRS query centered 
+    on a given RA and DEC. Returns basic information for 
+    the target and nearby neighbors.
+    
+    Author: Zach Vanderbosch (original), Joseph Guidry
+
+    args:
+        ra (float): Right Ascension in Decimal Degrees
+        dec (float): Declination in Decimal Degrees
+        rad (float): Radius of cone search
+        full_query (bool, optional): Optional argument that allows
+            users to query further information for a given target.
+
+    Return:
+        list:
+            urls (list): list of URLs used to download image data
+    """
 
     # Create an Empty DataFrame
-    # if full_query:
-    columns = """objID,raMean,decMean,nDetections,ng,nr,ni,nz,ny,
-            gMeanPSFMag,gMeanPSFMagErr,rMeanPSFMag,rMeanPSFMagErr,
-            iMeanPSFMag,iMeanPSFMagErr,zMeanPSFMag,zMeanPSFMagErr,
-            yMeanPSFMag,yMeanPSFMagErr,gMeanKronMag,gMeanKronMagErr,
-            rMeanKronMag,rMeanKronMagErr,iMeanKronMag,iMeanKronMagErr,
-            zMeanKronMag,zMeanKronMagErr,yMeanKronMag,yMeanKronMagErr""".split(',')
-    # else:
-    #     columns = """objID,raMean,decMean,gMeanPSFMag,rMeanPSFMag""".split(',')
+    if full_query:
+        columns = """objID,raMean,decMean,nDetections,ng,nr,ni,nz,ny,
+                gMeanPSFMag,gMeanPSFMagErr,rMeanPSFMag,rMeanPSFMagErr,
+                iMeanPSFMag,iMeanPSFMagErr,zMeanPSFMag,zMeanPSFMagErr,
+                yMeanPSFMag,yMeanPSFMagErr,gMeanKronMag,gMeanKronMagErr,
+                rMeanKronMag,rMeanKronMagErr,iMeanKronMag,iMeanKronMagErr,
+                zMeanKronMag,zMeanKronMagErr,yMeanKronMag,yMeanKronMagErr""".split(',')
+    else:
+        columns = """objID,raMean,decMean,gMeanPSFMag,rMeanPSFMag""".split(',')
     columns = [x.strip() for x in columns]
     columns = [x for x in columns if x and not x.startswith('#')]
 
@@ -112,28 +136,21 @@ def ps_query(ra,dec,rad,full_query=False):
 
 
 
-"""
-This script contains several functions useful for
-retrieving a variety of ZTF data products such as:
-    - Reference images (from IPAC)
-    - Science images (from IPAC)
-    - Light Curves (from IPAC)
-    - Transient Alert Packets (from MARS/LCO)
-
-Author: Zach Vanderbosch
-"""
-
-
-# Function to retrieve URLs for reference image cutouts
-# centered on a given RA and DEC
-def getztfrefurls(ra,dec,size=45):
+def getztfrefurls(ra,dec,size=45.0):
     """
-        ra   = Right Ascension in Decimal Degrees
-        dec  = Declination in Decimal Degrees
-        size = Image size in arcseonds
+    Function to retrieve URLs for reference image cutouts
+    from IRSA/IPAC centered on a given RA and DEC.
+    
+    Author: Zach Vanderbosch
 
-    Returns:
-        urls = list of URLs used to download image data
+    args:
+        ra (float): Right Ascension in Decimal Degrees
+        dec (float): Declination in Decimal Degrees
+        size (float): Image size in arcseonds
+
+    Return:
+        list:
+            urls (list): list of URLs used to download image data
     """
     
     # First get some info related to the reference image
