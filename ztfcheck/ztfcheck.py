@@ -40,7 +40,7 @@ warnings.simplefilter('ignore')
 
 
 #############################################################
-## Define "main" function to make command line executable
+## Define "main" function to make ZTF Check a command line executable
 def main():
 	## Generate arguments for command line parsing
 	parser = argparse.ArgumentParser()
