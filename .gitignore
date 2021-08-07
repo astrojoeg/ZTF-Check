@@ -4,3 +4,5 @@
 __pycache__/*
 .gitignore
 .vscode/
+dist/
+ZTF_Check.egg-info/
