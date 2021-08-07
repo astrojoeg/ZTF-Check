@@ -14,7 +14,7 @@ $ pip install ZTF-Check
 ### Usage  
 
 To run ZTF Check on your target, execute the following terminal command (Python 2.X and Python 3.X compatible):   
-```bash
+```
 $ ztfcheck -ra <ra in degrees> -dec <dec in degrees> -q <whether to show Pan-STARRS query results>
 ```  
 
