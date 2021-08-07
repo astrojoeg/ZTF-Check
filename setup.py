@@ -5,7 +5,7 @@ with open("requirements.txt", "r") as f:
 
 setup(
 	name="ZTF-Check",
-	version="0.1.4",
+	version="1.0",
 	author='Joseph Guidry',
 	author_email="jaguidry@bu.edu",
 	description="ZTF Check! The quick way to check out your target's FOV in ZTF.",

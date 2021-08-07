@@ -1,11 +1,24 @@
 # Welcome to ZTF Check!
 
-With this package you can quickly query the Zwicky Transient Facility (ZTF) and Pan-STARRS (PS1) databases for quick reference images, the latter of which is multicolor. All you need is your target's R.A. and declination!
+**ZTF Check** is Python package that allows you to quickly query the Zwicky Transient Facility (ZTF) and Pan-STARRS (PS1) databases for quick reference images, the latter of which is multicolor. All you need is your target's R.A. and declination!
 
-ZTF Check is especially useful when checking to see if you target has an extremely close neighbor or neighboring bright star that could be contaminating it's ZTF light curves. Disclaimer: ZTF Check cannot guarantee if your target's photometry is clean/contaminated. You should inspect the individual images by performing a [Catalog Search](https://irsa.ipac.caltech.edu/Missions/ztf.html) with IRSA to be certain.
+[![PyPI](https://img.shields.io/pypi/v/ZTF-Check.svg)](https://pypi.org/project/ZTF-Check/)
 
-To run ZTF Check, execute the following terminal command (Python 2.X and Python 3.X compatible):   
-```$ python ztfcheck.py -ra <ra in degrees> -dec <dec in degrees> -q <whether to show Pan-STARRS query results>```  
+### Installation  
+
+To install ZTF Check, execute the following:
+```bash
+$ pip install ZTF-Check
+```
+
+### Usage  
+
+To run ZTF Check on your target, execute the following terminal command (Python 2.X and Python 3.X compatible):   
+```bash
+$ ztfcheck -ra <ra in degrees> -dec <dec in degrees> -q <whether to show Pan-STARRS query results>
+```  
+
+ZTF Check is especially useful when checking to see if you target has an extremely close neighbor or neighboring bright star that could be contaminating it's ZTF light curves. Disclaimer: ZTF Check cannot guarantee if your target's photometry is clean/contaminated. You should inspect the individual images by performing a [Catalog Search](https://irsa.ipac.caltech.edu/Missions/ztf.html) with IRSA to be certain. 
 
 ![Example ZTF Check result](ztfj0139+5245_example.png)
 
