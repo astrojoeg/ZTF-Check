@@ -6,3 +6,4 @@ __pycache__/*
 .vscode/
 dist/
 ZTF_Check.egg-info/
+ztfcheck/__pycache__/
