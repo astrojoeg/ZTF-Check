@@ -25,4 +25,4 @@ ZTF Check is especially useful when checking to see if you target has an extreme
 
 Note that this package makes use of some functions previously developed by [Zach Vanderbosch](https://github.com/zvanderbosch) and [STSCI](http://ps1images.stsci.edu/ps1_dr2_api.html).
 
-This package is a fun side project and largely a work-in-progress (as you can see with the shotty neighbor marking in the example image above!). So, if anything does not work or you have any functionality requests, please correspond with me at jaguidry[at]bu[dot]edu.
+This package is a fun side project and largely a work-in-progress (as you can see with the shotty neighbor marking in the example image above!). So, if anything does not work or you have any feature requests, please correspond with me at jaguidry[at]bu[dot]edu.
