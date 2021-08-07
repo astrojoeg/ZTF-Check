@@ -32,7 +32,7 @@ from scipy.ndimage import rotate
 import sys
 
 # Import local functions
-from image_funcs import ps_query, getztfrefurls, getps1colorim
+from ztfcheck.image_funcs import ps_query, getztfrefurls, getps1colorim
 
 # Suppress annoying warnings
 import warnings
