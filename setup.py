@@ -5,7 +5,7 @@ with open("requirements.txt", "r") as f:
 
 setup(
 	name="ZTF-Check",
-	version="0.1.2",
+	version="0.1.4",
 	author='Joseph Guidry',
 	author_email="jaguidry@bu.edu",
 	description="ZTF Check! The quick way to check out your target's FOV in ZTF.",
@@ -14,7 +14,7 @@ setup(
 	packages=find_packages(),
 	entry_points ={
             'console_scripts': [
-                'ztfcheck = ztfcheck:main'
+                'ztfcheck = ztfcheck.ztfcheck:main'
             ]
         },
     classifiers=[
