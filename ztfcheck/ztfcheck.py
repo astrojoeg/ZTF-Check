@@ -100,14 +100,6 @@ def main():
 		print("")
 		sys.exit(1)
 
-	## Get WCS coordinates from ZTF image header to plot locations of nearby stars found by Pan-STARRS
-	w = wcs.WCS(hdr)
-	target = [ra,dec]
-	neighbor1 = [ps1_query.raMean.values[1], ps1_query.decMean.values[1]]
-	neighbor2 = [ps1_query.raMean.values[2], ps1_query.decMean.values[2]]
-	neighbor3 = [ps1_query.raMean.values[3], ps1_query.decMean.values[3]]
-	wpix = w.wcs_world2pix(np.array([target,neighbor1,neighbor2,neighbor3]),1)
-
 	## Get the Pan-STARRS image and rotate to match ZTF orientation
 	ps1_im = np.flipud(rotate(ImageOps.flip(getps1colorim(ra,dec,size=500,filters="gri")),180))
 
@@ -121,13 +113,30 @@ def main():
 	                    min_npixels=5, krej=2.5, max_iterations=5)
 	vmin,vmax = ZS.get_limits(ref_im)
 
-	## Plot the images
+	## Plot the ZTF Reference Image
 	ref_ax = ax1.imshow(np.flipud(ref_im), cmap='gray',origin='lower',vmin=vmin, vmax=vmax)
-	ax1.plot(wpix[3][0],wpix[3][1],'C1x',ms=16,mew=4,alpha=1,label='Neighbor 3')
-	ax1.plot(wpix[2][0],wpix[2][1],'C2x',ms=16,mew=4,alpha=1,label='Neighbor 2')
-	ax1.plot(wpix[1][0],wpix[1][1],'C3x',ms=16,mew=4,alpha=1,label='Neighbor 1')
-	ax1.plot(wpix[0][0],wpix[0][1],'C9x',ms=16,mew=4,alpha=1,label='Target')
-	ax1.add_patch(Circle((wpix[0][0],wpix[0][1]), radius=5.0 ,
+	## Mark the target and neighbors (if there are any) on the ZTF Reference Image
+	mark_neighbors = False
+	if len(ps1_query) >= 4:
+		mark_neighbors = True
+	if mark_neighbors:
+		## Get WCS coordinates from ZTF image header to plot locations of nearby stars found by Pan-STARRS
+		w = wcs.WCS(hdr)
+		target = [ra,dec]
+		neighbor1 = [ps1_query.raMean.values[1], ps1_query.decMean.values[1]]
+		neighbor2 = [ps1_query.raMean.values[2], ps1_query.decMean.values[2]]
+		neighbor3 = [ps1_query.raMean.values[3], ps1_query.decMean.values[3]]
+		wpix = w.wcs_world2pix(np.array([target,neighbor1,neighbor2,neighbor3]),1)
+		ax1.plot(wpix[3][0],wpix[3][1],'C1x',ms=16,mew=4,alpha=1,label='Neighbor 3')
+		ax1.plot(wpix[2][0],wpix[2][1],'C2x',ms=16,mew=4,alpha=1,label='Neighbor 2')
+		ax1.plot(wpix[1][0],wpix[1][1],'C3x',ms=16,mew=4,alpha=1,label='Neighbor 1')
+		ax1.plot(wpix[0][0],wpix[0][1],'C9x',ms=16,mew=4,alpha=1,label='Target')
+		ax1.add_patch(Circle((wpix[0][0],wpix[0][1]), radius=5.0,
+	               edgecolor='C9',facecolor='None',linewidth=1.75,label='5 arcsec Aperture'))
+	else:
+		## Put markers in center of image
+		ax1.plot(22.5,22.5,'C9x',ms=16,mew=4,alpha=1,label='Target')
+		ax1.add_patch(Circle((22.5,22.5), radius=5.0,
 	               edgecolor='C9',facecolor='None',linewidth=1.75,label='5 arcsec Aperture'))
 	ax1.set_title(r'ZTF Reference ${}$-band Image'.format(filt[1]),fontsize=16)
 	ax1.tick_params(which='major',direction='out',labelsize=12,width=1.25,length=6)
@@ -135,6 +144,7 @@ def main():
 	ax1.set_ylabel('Separation (arcsec)',fontsize=14)
 	ax1.legend(loc='best',markerscale=0.70)
 
+	## Plot the PS1 Image
 	ps1_ax =ax2.imshow(ps1_im, origin='lower')
 	ax2.set_title(r'PS1 Reference $gri$ Image',fontsize=16)
 	ax2.tick_params(which='major',direction='out',labelsize=12,width=1.25,length=6)
